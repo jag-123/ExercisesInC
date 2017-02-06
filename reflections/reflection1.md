@@ -6,15 +6,16 @@ In order to stay on task with the project we decided to have daily stand-up meet
 One thing that we could have done better this sprint was the exercises to head first C and thinkOS. We completed the readings before the Sprint 1 review, but we only briefly looked at the exercises. Since then, we have made it a priority to complete both the reading and exercises before the class in which they are discussed.
 
 ## Exercises in C
-[Exercise 1](https://github.com/jag-123/ExercisesInC/tree/master/exercises/ex01)
-[Exercise 2](https://github.com/jag-123/ExercisesInC/tree/master/exercises/ex02)
+1.[Exercise 1](https://github.com/jag-123/ExercisesInC/tree/master/exercises/ex01)
+2.[Exercise 2](https://github.com/jag-123/ExercisesInC/tree/master/exercises/ex02)
 
 ## ThinkOS Questions
 I completed the first two chapters of thinkOS this sprint. 
+
 [Reading Questions](https://github.com/jag-123/ExercisesInC/blob/master/reading_questions/thinkos.md)
 
 ## Exam Question and Solution
 If you were to type in "ps" in a UNIX terminal what would you see? What about if you added the "-e" flag to "ps"? What could you infer about a process named "kblockd"?
 
 Answer: 
-You would see information about the list of processes running. The "-e" flag shows every process, including processes belonging to other users. I can infer from "kblockd" that it is a kernel process which means it is part of the os that is responsible for core capabilites. Also, I could infer that it is a daemon process which means that it is a process that runs in the background and provides os services. 
+You would see information about the list of processes running. The "-e" flag shows every process, including processes belonging to other users. I can infer from "kblockd" that it is a kernel process(from the first k) which means it is part of the os that is responsible for core capabilites. Also, I could infer that it is a daemon process(from the last d) which means that it is a process that runs in the background and provides os services. 

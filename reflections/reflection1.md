@@ -6,8 +6,9 @@ In order to stay on task with the project we decided to have daily stand-up meet
 One thing that we could have done better this sprint was the exercises to head first C and thinkOS. We completed the readings before the Sprint 1 review, but we only briefly looked at the exercises. Since then, we have made it a priority to complete both the reading and exercises before the class in which they are discussed.
 
 ## Exercises in C
-1.[Exercise 1](https://github.com/jag-123/ExercisesInC/tree/master/exercises/ex01)
-2.[Exercise 2](https://github.com/jag-123/ExercisesInC/tree/master/exercises/ex02)
+[Exercise 1](https://github.com/jag-123/ExercisesInC/tree/master/exercises/ex01)
+
+[Exercise 2](https://github.com/jag-123/ExercisesInC/tree/master/exercises/ex02)
 
 ## ThinkOS Questions
 I completed the first two chapters of thinkOS this sprint. 

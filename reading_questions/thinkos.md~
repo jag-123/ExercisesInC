@@ -64,30 +64,60 @@ A daemon is a process that runs in the background and provides operating system 
 
 1) The Georgian alphabet has 33 letters.  How many bit are needed to specify a letter?
 
+Six bits are needed to specify all the values of the alphabet because 2^5 is only 32. 
+
 2) In the UTF-16 character encoding, the binary representation of a character can take up to 32 bits.  
 Ignoring the details of the encoding scheme, how many different characters can be represented?
 
+2^32 characters or 4,294,967,296 characters ignoring the details of the encoding scheme.
+
 3) What is the difference between "memory" and "storage" as defined in Think OS?
+
+Storage is defined as non-volatile storage such as a hard drive or solid state drive, while memory is usually some kind of random access memory (RAM). When a computer is shut off, the contents of the RAM is lost, while the contents of the storage is not. 
 
 4) What is the difference between a GiB and a GB?  What is the percentage difference in their sizes?
 
+GiB stands for gibibyte which is a binary unit and GB stands for gigabyte which is a decimal unit. One gibibyte is 2^30 bytes and one gigabyte is 10^9 bytes which is a %6.87 difference. 
+
 5) How does the virtual memory system help isolate processes from each other?
+
+Each process generates virtual addresses which are translated to physical addressess by the OS. Since each process manages its own virtual memory, they are inherently separated from each other.
 
 6) Why do you think the stack and the heap are usually located at opposite ends of the address space?
 
+They are probably located at opposite ends so that they don't collide with each other as they grow. 
+
 7) What Python data structure would you use to represent a sparse array?
+
+I would probably use a dictionary over a list. 
 
 8) What is a context switch?
 
+A context switch is a mechanism that can interrupt a running process, save its state, and then run a different process. 
+
 In this directory, you should find a subdirectory named `aspace` that contains `aspace.c`.  Run it on your computer and compare your results to mine.
   
+My results were:
+Address of main is 0x40057d
+Address of global is 0x60104c
+Address of local is 0x7ffd59b264f4
+Address of p is 0x2009010
+
 1) Add a second call to `malloc` and check whether the heap on your system grows up (toward larger addresses).  
 
+Yes, the address of p increased. 
+
 2) Add a function that prints the address of a local variable, and check whether the stack grows down.  
+
+Yes, the stack grows down. The address of local is 0x7fff033a35fc and the address of the local print statement is lower at a value of 0x7fff033a35dc.
 
 3) Choose a random number between 1 and 32, and allocate two chunks with that size.  
 How much space is there between them?  Hint: Google knows how to subtract hexadecimal numbers.
 
+I chose number 22. 
+Address of chunk_1 is 0x10b4130
+Address of chunk_2 is 0x10b4150
+0x10b4150 - 0x10b4130 = 0x20 = 32. 
 
 ## Chapter 4
 
@@ -97,19 +127,33 @@ How much space is there between them?  Hint: Google knows how to subtract hexade
 1) What abstractions do file systems provide?  Give an example of something that is logically 
 true about files systems but not true of their implementations.
 
+File systems provide a convient and consistent method of storing files. A file is a sequence of bytes, but persistent storage is block-based. 
+
 2) What information do you imagine is stored in an `OpenFileTableEntry`?
 
+The address of the file, if the file is open for reading/writing, and the current position in the file.
+
 3) What are some of the ways operating systems deal with the relatively slow performance of persistent storage?
+
+They work to fill the gap between main memory and persistant storage by using block transfers, prefetching, buffering, and caching. 
 
 4) Suppose your program writes a file and prints a message indicating that it is done writing.  
 Then a power cut crashes your computer.  After you restore power and reboot the computer, you find that the 
 file you wrote is not there.  What happened?
 
+The message was probably in a buffer, stored in RAM, so when the power cut occured, the data was lost.
+
 5) Can you think of one advantage of a File Allocation Table over a UNIX inode?  Or an advantage of a inode over a FAT?
+
+A FAT is probably easier to add/remove stuff from. An inode is probably more reliable in that it is less likely to lose the whole file if one block is corrupted.
 
 6) What is overhead?  What is fragmentation?
 
+Overhead is the space taken by the data structures used by the allocator. Fragmentation is the left over/unused space.
+
 7) Why is the "everything is a file" principle a good idea?  Why might it be a bad idea?
+
+It is good because it makes things simpler for using standard input/output for programming. It is bad because its not accurate(everything is bytes) and could abstract away useful information. 
 
 If you would like to learn more about file systems, a good next step is to learn about journaling file systems.  
 Start with [this Wikipedia article](https://en.wikipedia.org/wiki/Journaling_file_system), then 

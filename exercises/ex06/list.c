@@ -1,3 +1,5 @@
+//Solution by Jeremy Garcia
+
 /* Example code for Exercises in C.
 
 Based on an example from http://www.learn-c.org/en/Linked_lists

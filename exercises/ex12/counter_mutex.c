@@ -15,6 +15,7 @@
 #define NUM_CHILDREN 2
 
 int global = 10;
+int counter = 0;
 
 // UTILITY FUNCTIONS
 
@@ -84,6 +85,7 @@ typedef struct {
     int counter;
     int end;
     int *array;
+    Semaphore *sem;
 } Shared;
 
 /*  make_shared
@@ -106,6 +108,7 @@ Shared *make_shared (int end)
     for (i=0; i<shared->end; i++) {
         shared->array[i] = 0;
     }
+    shared->sem = make_semaphore(1);
     return shared;
 }
 
@@ -169,9 +172,12 @@ void child_code (Shared *shared)
             // printf("address of local %p\n",&stack_int);
 	        return;
 	    }
+        sem_wait(shared->sem);
 	    shared->array[shared->counter]++;
 	    shared->counter++;
 
+        //increments semaphore
+        sem_signal(shared->sem);
 	    // if (shared->counter % 100000 == 0) {
 	    //     printf ("%d\n", shared->counter);
 	    // }
@@ -190,6 +196,8 @@ void *entry (void *arg)
     Shared *shared = (Shared *) arg;
     child_code (shared);
     printf ("Child done.\n");
+    counter++;
+    printf("%d\n",counter);
     pthread_exit (NULL);
 }
 
@@ -236,9 +244,3 @@ int main ()
     check_array (shared);
     return 0;
 }
-
-// counter - 0m4.973s
-// counter_mutex - 0m20.761s
-
-// The synchronization overhead is minimal because 
-// the semaphore just has to wait for incrementing an array position.

@@ -1,3 +1,5 @@
+//Solution by Jeremy Garcia
+
 /* Example code for Exercises in C
 
 Copyright 2016 Allen Downey
@@ -75,6 +77,18 @@ void incr (GHashTable* hash, gchar *key)
     }
 }
 
+void free_hash (gpointer key, gpointer value, gpointer user_data){
+    gchar *word = (gchar *) key;
+    gint *freq = (gint *) value;  
+    g_free(word);
+    g_free(freq);
+}
+
+void free_seq (gpointer key, gpointer value, gpointer user_data) {
+    g_free(key);
+    g_free(value);
+}
+
 int main (int argc, char** argv)
 {
     gchar *filename;
@@ -108,6 +122,7 @@ int main (int argc, char** argv)
 	for (i=0; array[i] != NULL; i++) {
 	    incr(hash, array[i]);
 	}
+    g_strfreev(array);
     }
     fclose (fp);
 
@@ -121,8 +136,9 @@ int main (int argc, char** argv)
     // iterate the sequence and print the pairs
     g_sequence_foreach (seq,  (GFunc) pair_printor, NULL);
 
-    // try (unsuccessfully) to free everything
-    // (in a future exercise, we will fix the memory leaks)
+    // try to free everything
+    g_hash_table_foreach (hash, (GHFunc) free_hash, NULL);
+    g_sequence_foreach (seq, (GFunc) free_seq, NULL);
     g_hash_table_destroy (hash);
     g_sequence_free (seq);
 
